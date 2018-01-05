@@ -1,0 +1,104 @@
+QPushButton{
+  border: none;
+  height: 18;
+  color: white;
+  /*  font:16px;*/
+  /*  font-weight: 500;*/
+}
+
+QPushButton#timeButton{
+  background-color:#696969;
+  max-width: 64
+}
+
+QPushButton#menuButton{
+  background-color:#6B6B6B;
+  max-width: 64;
+  text-align: right
+}
+
+QPushButton#menuButton:menu-indicator{
+  image: none
+}
+
+/*QPushButton#menuButton:item{
+    border: 0px
+}*/
+
+QPushButton#paraButton{
+  background-color:#8B3626;
+}
+
+QPushButton#starButton{
+  background-color:#555555;
+  width: 18
+}
+
+QPushButton#historyButton{
+  background-color:#4D4D4D;
+  width: 18
+}
+
+QLabel{
+/*  border: none;*/
+/*  height: 18;*/
+/*  font:16px;*/
+/*  font-weight: 500;*/
+    color: white;
+}
+
+QLabel#speedLabel{
+    background-color:#4D4D4D;
+}
+
+QLabel#keyStrokeLabel{
+    background-color:#5E5E5E;
+}
+
+QLabel#codeLengthLabel{
+    background-color:#7A7A7A;
+}
+
+QLabel#avSpeedLabel{
+    background-color:#4D4D4D;
+}
+
+QLabel#avKeyStrokeLabel{
+    background-color:#5E5E5E;
+}
+
+QLabel#avCodeLengthLabel{
+    background-color:#7A7A7A;
+}
+
+QLabel#titleLabel{
+    background-color:#20B2AA;
+}
+
+QLabel#classLabel{
+    background-color:#6C7B8B;
+}
+
+QLabel#countLabel{
+    background-color:#CD8500;
+}
+
+QLabel#groupLabel{
+    background-color:#228B22;
+}
+
+QProgressBar{
+        border: none;
+        color: white;
+        text-align: center;
+        background: rgb(68, 69, 73);
+}
+
+QProgressBar::chunk {
+        border: none;
+        background: rgb(0, 160, 230);
+}
+
+
+
+

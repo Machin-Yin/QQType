@@ -1,36 +1,20 @@
 #include "machintype.h"
 
 MachinType::MachinType(QWidget *parent)
-    : QMainWindow(parent)
+    : QWidget(parent)
 {
-    resize(QSize(650,470));
+    init();
+    createSplitter();
 
-    rightColor = "#CCCCCC";
-    wrongColor = "#FF4040";
-    QColor backGroundColor = "#FFFFFF";
-    defColor = backGroundColor;
+    mainLayout = new QVBoxLayout;
+    mainLayout->setMargin(4);
+    headTool = new HeadTool;
 
-    splitterMain = new QSplitter(Qt::Vertical,0);
+    mainLayout->addWidget(headTool);
+    mainLayout->setSpacing(1);
+    mainLayout->addWidget(splitterMain);
 
-    srcEdit = new QTextEdit(splitterMain);
-    srcEdit->setFontPointSize(18);
-    srcEdit->setReadOnly(true);
-    srcEdit->setText("中华人民共和国");
-    srcStr = srcEdit->toPlainText();
-    srcLength = srcStr.length();
-
-    destEdit = new QTextEdit(splitterMain);
-    destEdit->setFontPointSize(18);
-
-    splitterMain->addWidget(srcEdit);
-    splitterMain->addWidget(destEdit);
-    splitterMain->setOpaqueResize(true);
-    splitterMain->setStyleSheet("QSplitter::handle { background-color: orange; height: 20 }"); //设置分界线的样式
-    splitterMain->setStretchFactor(0,1);
-
-    connect(destEdit,SIGNAL(textChanged()),this,SLOT(onType()));
-
-    setCentralWidget(splitterMain);
+    setLayout(mainLayout);
     destEdit->setFocus();
 }
 
@@ -39,17 +23,57 @@ MachinType::~MachinType()
 
 }
 
+void MachinType::init()
+{
+    resize(QSize(550,350));
+//    setStyleSheet("background-color: #454545;");
+    QPalette pal(this->palette());
+    pal.setColor(QPalette::Background, "#454545");
+    setAutoFillBackground(true);
+    setPalette(pal);
+
+    rightColor = "#CCCCCC";
+    wrongColor = "#FF4040";
+    QColor backGroundColor = "#FFFFFF";
+    defColor = backGroundColor;
+}
+
+void MachinType::createSplitter()
+{
+    splitterMain = new QSplitter(Qt::Vertical,0);
+
+    srcEdit = new QTextEdit;
+    srcEdit->setFontPointSize(18);
+    srcEdit->setReadOnly(true);
+    srcEdit->setText("中华人民共和国");
+    srcEdit->setStyleSheet("background-color: white;");
+    srcStr = srcEdit->toPlainText();
+    srcLength = srcStr.length();
+
+    destEdit = new QTextEdit;
+    destEdit->setFontPointSize(16);
+    destEdit->setStyleSheet("background-color: white;");
+
+    splitterMain->addWidget(srcEdit);
+    splitterMain->addWidget(destEdit);
+    splitterMain->setOpaqueResize(true);
+    splitterMain->setStyleSheet("QSplitter::handle { background-color: #454545; height: 18 }"); //设置分界线的样式
+    splitterMain->setStretchFactor(0,1);
+
+    connect(destEdit,SIGNAL(textChanged()),this,SLOT(onType()));
+}
+
 void MachinType::onType()
 {
-    destEdit->setFontPointSize(18);
     qDebug() << __FUNCTION__;
     QString destStr = destEdit->toPlainText();
     int destLength = destStr.length();
+    if(destLength == 0) destEdit->setFontPointSize(18);
+
     for(int i = 0; i < destLength; i++)
     {
         if(i >= srcLength)
         {
-            qDebug() << i;
             destStr.chop(destStr.length() - srcLength); // Cut off at 300 characters
             destEdit->setPlainText(destStr); // Reset text
 
@@ -64,7 +88,6 @@ void MachinType::onType()
         }
         if(srcStr.at(i) != destStr.at(i))
         {
-            qDebug() << i + 1;
             setCharColor(i,false);
         }
         else
@@ -76,8 +99,6 @@ void MachinType::onType()
 
 void MachinType::setCharColor(unsigned int pos, bool equal)
 {
-    qDebug() << "pos == " << pos;
-    if(pos < 0)return ;
     QTextCursor cursor = srcEdit->textCursor();
     cursor.movePosition( QTextCursor::StartOfLine );//行首
     cursor.movePosition( QTextCursor::Right, QTextCursor::MoveAnchor, pos);//向右移动到Pos
@@ -93,17 +114,15 @@ void MachinType::setCharColor(unsigned int pos, bool equal)
     {
         newcharfmt.setBackground(wrongColor);
     }
-    srcEdit->setCurrentCharFormat( newcharfmt );
-    srcEdit->setTextCursor( cursor ); // added
+    srcEdit->setCurrentCharFormat(newcharfmt);
+    srcEdit->setTextCursor(cursor); // added
 
     cursor.movePosition( QTextCursor::PreviousCharacter );//加上这句是为了去除光标selected
-    srcEdit->setTextCursor( cursor ); // added
+    srcEdit->setTextCursor(cursor); // added
 }
 
 void MachinType::setCharColorBack(unsigned int pos)
 {
-    qDebug() << "pos == " << pos;
-    if(pos < 0)return ;
     QTextCursor cursor = srcEdit->textCursor();
     cursor.movePosition( QTextCursor::StartOfLine );//行首
     cursor.movePosition( QTextCursor::Right, QTextCursor::MoveAnchor, pos);//向右移动到Pos
@@ -112,11 +131,11 @@ void MachinType::setCharColorBack(unsigned int pos)
     QTextCharFormat defcharfmt = srcEdit->currentCharFormat();
     QTextCharFormat newcharfmt = defcharfmt;
     newcharfmt.setBackground(defColor);
-    srcEdit->setCurrentCharFormat( newcharfmt );
-    srcEdit->setTextCursor( cursor ); // added
+    srcEdit->setCurrentCharFormat(newcharfmt);
+    srcEdit->setTextCursor(cursor); // added
 
     cursor.movePosition( QTextCursor::PreviousCharacter );//加上这句是为了去除光标selected
-    srcEdit->setTextCursor( cursor ); // added
+    srcEdit->setTextCursor(cursor); // added
 }
 
 bool MachinType::event(QEvent *event)
@@ -126,15 +145,15 @@ bool MachinType::event(QEvent *event)
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         if (keyEvent->key() == Qt::Key_Backspace)
         {
-            qDebug() << __FUNCTION__ << "Qt::Key_Backspace";
             QString desStr = destEdit->toPlainText();
             unsigned int desLength = desStr.length();
-            qDebug() << "desLength == " << desLength;
             setCharColorBack(desLength);
             return true;
+        }
+        else if (keyEvent->key() == Qt::Key_F5)
+        {
         }
     }
     return QWidget::event(event);
 }
-
 

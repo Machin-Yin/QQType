@@ -11,10 +11,11 @@
 #include <QColorDialog>
 #include <QEvent>
 #include <QKeyEvent>
+#include <QVBoxLayout>
 
-#include "customtextedit.h"
+#include "headtool.h"
 
-class MachinType : public QMainWindow
+class MachinType : public QWidget
 {
     Q_OBJECT
 
@@ -22,12 +23,17 @@ public:
     MachinType(QWidget *parent = 0);
     ~MachinType();
 private:
+    void init();
+    void createSplitter();
     void setCharColor(unsigned int pos, bool equal);
     void setCharColorBack(unsigned int pos);
     bool event(QEvent *event);
+    void getWidgetPtr();
 private slots:
     void onType();
 private:
+    QVBoxLayout *mainLayout;
+    HeadTool *headTool;
     QSplitter *splitterMain;
     QTextEdit *srcEdit;
     QTextEdit *destEdit;

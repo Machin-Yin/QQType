@@ -26,8 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         machintype.cpp \
-    customtextedit.cpp
+    headtool.cpp \
+    buttoncontexmenu.cpp
 
 HEADERS += \
         machintype.h \
-    customtextedit.h
+    headtool.h \
+    buttoncontexmenu.h
+
+RESOURCES += \
+    resource.qrc
