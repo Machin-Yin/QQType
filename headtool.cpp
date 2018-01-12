@@ -11,6 +11,7 @@ HeadTool::HeadTool(QWidget *parent) : QWidget(parent)
     setLabelAlign();
     addLayout();
     setLayout(mainLayout);
+
 }
 
 void HeadTool::createHorizontalGroup()
@@ -163,6 +164,8 @@ void HeadTool::createButtonMenu()
     buttonMenu->addAction(actionSend);
     buttonMenu->addAction(actionThesaurus);
     buttonMenu->addAction(actionAbility);
+
+    connect(actionSend,SIGNAL(triggered()),this,SLOT(slotActionSend()));
 }
 
 bool HeadTool::eventFilter(QObject * obj, QEvent *event)
@@ -180,5 +183,12 @@ bool HeadTool::eventFilter(QObject * obj, QEvent *event)
         return true;
     }
     return false;
+}
+
+void HeadTool::slotActionSend()
+{
+    qDebug() << __FUNCTION__;
+    sendarticle = new SendArticle();
+    sendarticle->show();
 }
 

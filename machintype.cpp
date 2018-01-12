@@ -5,7 +5,6 @@ MachinType::MachinType(QWidget *parent)
 {
     init();
     createSplitter();
-
     mainLayout = new QVBoxLayout;
     mainLayout->setMargin(4);
     headTool = new HeadTool;
@@ -40,7 +39,7 @@ void MachinType::init()
 
 void MachinType::createSplitter()
 {
-    splitterMain = new QSplitter(Qt::Vertical,0);
+    splitterMain = new QSplitter(Qt::Vertical,this);
 
     srcEdit = new QTextEdit;
     srcEdit->setFontPointSize(18);
@@ -58,7 +57,7 @@ void MachinType::createSplitter()
     splitterMain->addWidget(destEdit);
     splitterMain->setOpaqueResize(true);
     splitterMain->setStyleSheet("QSplitter::handle { background-color: #454545; height: 18 }"); //设置分界线的样式
-    splitterMain->setStretchFactor(0,1);
+//    splitterMain->setStretchFactor(3,1);
 
     connect(destEdit,SIGNAL(textChanged()),this,SLOT(onType()));
 }

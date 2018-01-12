@@ -1,3 +1,6 @@
+
+/**********  mainwindow  ***********/
+
 QPushButton{
   border: none;
   height: 18;
@@ -7,18 +10,24 @@ QPushButton{
 }
 
 QPushButton#timeButton{
-  background-color:#696969;
-  max-width: 64
+    border: none;
+    height: 18;
+    color: white;
+    background-color:#696969;
+    max-width: 64
 }
 
 QPushButton#menuButton{
-  background-color:#6B6B6B;
-  max-width: 64;
-  text-align: right
+    border: none;
+    height: 18;
+    color: white;
+    background-color:#6B6B6B;
+    max-width: 64;
+    text-align: right
 }
 
 QPushButton#menuButton:menu-indicator{
-  image: none
+    image: none
 }
 
 /*QPushButton#menuButton:item{
@@ -26,17 +35,26 @@ QPushButton#menuButton:menu-indicator{
 }*/
 
 QPushButton#paraButton{
-  background-color:#8B3626;
+    border: none;
+    height: 18;
+    color: white;
+    background-color:#8B3626;
 }
 
 QPushButton#starButton{
-  background-color:#555555;
-  width: 18
+    border: none;
+    height: 18;
+    color: white;
+    background-color:#555555;
+    width: 18
 }
 
 QPushButton#historyButton{
-  background-color:#4D4D4D;
-  width: 18
+    border: none;
+    height: 18;
+    color: white;
+    background-color:#4D4D4D;
+    width: 18
 }
 
 QLabel{
@@ -97,6 +115,20 @@ QProgressBar{
 QProgressBar::chunk {
         border: none;
         background: rgb(0, 160, 230);
+}
+
+/*********** sendarticle  ************/
+
+QLabel#selectedLabel{
+    width: 4;
+}
+
+QLabel#nameLabel{
+
+}
+
+QLabel#countLabel{
+    width: 64;
 }
 
 

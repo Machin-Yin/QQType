@@ -3,7 +3,6 @@
 
 QString getQssContent()
 {
-    qDebug() << __FUNCTION__;
     QFile styleSheet(":/resource.qss");
     if (!styleSheet.open(QIODevice::ReadOnly))
     {

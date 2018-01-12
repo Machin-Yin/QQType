@@ -11,7 +11,7 @@
 #include <QMenu>
 #include <QContextMenuEvent>
 
-//#include "buttoncontexmenu.h"
+#include "sendarticle/sendarticle.h"
 
 class HeadTool : public QWidget
 {
@@ -33,7 +33,8 @@ private:
 
 signals:
 
-public slots:
+private slots:
+    void slotActionSend();
 
 private:
     QVBoxLayout *mainLayout;
@@ -68,6 +69,8 @@ private:
     QAction *actionSend;
     QAction *actionThesaurus;
     QAction *actionAbility;
+
+    SendArticle *sendarticle;
 };
 
 #endif // HEADTOOL_H

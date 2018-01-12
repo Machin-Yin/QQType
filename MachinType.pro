@@ -27,12 +27,16 @@ SOURCES += \
         main.cpp \
         machintype.cpp \
     headtool.cpp \
-    buttoncontexmenu.cpp
+    sendarticle/sendarticle.cpp \
+    sendarticle/toolboxitem.cpp \
+    sendarticle/customtoolbox.cpp
 
 HEADERS += \
         machintype.h \
     headtool.h \
-    buttoncontexmenu.h
+    sendarticle/sendarticle.h \
+    sendarticle/toolboxitem.h \
+    sendarticle/customtoolbox.h
 
 RESOURCES += \
     resource.qrc
