@@ -28,15 +28,23 @@ SOURCES += \
         machintype.cpp \
     headtool.cpp \
     sendarticle/sendarticle.cpp \
-    sendarticle/toolboxitem.cpp \
-    sendarticle/customtoolbox.cpp
+    sendarticle/leftwidget/customtoolbox.cpp \
+    sendarticle/leftwidget/toolboxitem.cpp \
+    sendarticle/rightwidget/articlewidget.cpp \
+    sendarticle/rightwidget/customstack.cpp \
+    sendarticle/rightwidget/rightwidget.cpp \
+    sendarticle/rightwidget/wordwidget.cpp
 
 HEADERS += \
         machintype.h \
     headtool.h \
     sendarticle/sendarticle.h \
-    sendarticle/toolboxitem.h \
-    sendarticle/customtoolbox.h
+    sendarticle/leftwidget/customtoolbox.h \
+    sendarticle/leftwidget/toolboxitem.h \
+    sendarticle/rightwidget/articlewidget.h \
+    sendarticle/rightwidget/customstack.h \
+    sendarticle/rightwidget/rightwidget.h \
+    sendarticle/rightwidget/wordwidget.h
 
 RESOURCES += \
     resource.qrc

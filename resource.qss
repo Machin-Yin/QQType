@@ -2,9 +2,9 @@
 /**********  mainwindow  ***********/
 
 QPushButton{
-  border: none;
+/*  border: none;
   height: 18;
-  color: white;
+  color: white;*/
   /*  font:16px;*/
   /*  font-weight: 500;*/
 }
@@ -62,7 +62,7 @@ QLabel{
 /*  height: 18;*/
 /*  font:16px;*/
 /*  font-weight: 500;*/
-    color: white;
+/*    color: white;*/
 }
 
 QLabel#speedLabel{

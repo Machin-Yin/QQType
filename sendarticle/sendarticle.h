@@ -5,7 +5,8 @@
 #include <QVBoxLayout>
 #include <QSplitter>
 
-#include "customtoolbox.h"
+#include "leftwidget/customtoolbox.h"
+#include "rightwidget/rightwidget.h"
 
 class SendArticle : public QWidget
 {
@@ -20,6 +21,7 @@ public slots:
 private:
     QSplitter *splitterMain;
     CustomToolBox *customToolBox;
+    RightWidget *rightWidget;
     QVBoxLayout *mainLayout;
 
 };
